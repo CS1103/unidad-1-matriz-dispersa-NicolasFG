@@ -10,21 +10,21 @@ private:
     int columnas;
 
 public:
-    Matriz();
-    Matriz( int, int);
+    Matriz(); // Cambian los datos que eran basura a cero o NULL
+    Matriz( int, int); // Crear la matriz
+    virtual ~Matriz(); // Destructor
 
-    void sumar(const Matriz&);
+    void llenar();   // 1. Necesitamos llenar la matriz
+    void imprimir(); // 2. Necesitamos imprimir la matriz
     void multiplicar(const Matriz&, const Matriz&);
-    void escalar(const Matriz&, const Matriz&);
+    void escalar(const Matriz&, int);
     void transposicion(const Matriz&);
+    Matriz operator +(const Matriz&);
+    Matriz operator *(const Matriz&);
+    Matriz& operator =(const Matriz&);
 
 
-
-
-
-    virtual ~Matriz();
-
-
+    Matriz(int i);
 };
 
 
