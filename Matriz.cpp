@@ -1,61 +1,87 @@
 #include "Matriz.h"
-
+#include "iostream"
+#include <cstdlib>
+#include <exception>
 using namespace std;
 
 // Todos los valores a 0.
-Matriz::Matriz(): matriz{nullptr}, filas {0}, columnas{0} {
+PROYECTO_1::Matriz::Matriz(): matriz{nullptr}, filas {0}, columnas{0} {
 
 }
 
 // Crear matriz
-Matriz::Matriz(int f, int c): filas {f}, columnas{c} {
-
-
+PROYECTO_1::Matriz::Matriz(int f, int c): filas {f}, columnas{c} {
     matriz = new int*[filas];
-    for (int i= 0 ; i < filas; i++)
+    try
     {
-        matriz[i] = new int[columnas];
+        if (filas != columnas)
+        {
+            throw logic_error("8");
+        }
     }
+    catch (const exception& e){ cout << "ERROR: "<< e.what() <<endl;
+    }
+
+    if(filas==columnas){
+        for (int i= 0 ; i < filas; i++)
+        {
+            matriz[i] = new int[columnas];
+        }
+    }
+
 }
 
 // Destructor
-Matriz::~Matriz() {
-
+PROYECTO_1::Matriz::~Matriz() {
+        delete[] matriz;
 }
 
-// Llenar matriz (por ahora se va a llenar sin dispersion para probar si funciona)
-void Matriz::llenar(){
+// Llenar matriz
+void PROYECTO_1::Matriz::llenar() {
 
-  for ( int i = 0; i < filas; i++) {
-      for (int j = 0; j < columnas; j++) {
-          std::cout << "["<<i<<"]"<<"["<<j<<"]";
-          std::cin >> matriz[i][j];
+    try
+    {
+        if (filas != columnas){
+            throw  logic_error("8");
+        }
     }
-  }
-
+    catch (const exception& e)
+    {
+        cout<<"ERROR: " <<e.what();
+    }
+    for (int i = 0; i < filas; i++)
+    {
+        for (int j = 0; j < columnas; j++)
+        {
+            matriz[i][j] = (rand() % 8) + 1;
+        }
+    }
 }
 
 // Imprimir matriz
-void Matriz::imprimir(){
-
-  for ( int i = 0; i < filas; i++) {
-    for (int j = 0; j < columnas; j++) {
-      cout<<matriz[i][j]<<" ";
+void PROYECTO_1::Matriz::imprimir(){
+    try
+    {
+        if (filas != columnas){
+            throw  logic_error("8");
+        }
     }
-    cout << endl;
-  }
-
+    catch (const exception& e)
+    {
+        cout<<"ERROR: " <<e.what();
+    }
+    for ( int i = 0; i < filas; i++)
+    {
+        for (int j = 0; j < columnas; j++) {
+            cout<<matriz[i][j]<<" ";
+        }
+        cout << endl;
+    }
 }
 
-// Multiplicar matrices
-void Matriz::multiplicar(const Matriz &, const Matriz &) {
-
-
-
-}
 
 // Producto Punto
-void Matriz::escalar(const Matriz& M1, int num) {
+void PROYECTO_1::Matriz::escalar(const Matriz& M1, int num) {
 
     Matriz temporal(M1);
     for (int i = 0; i < M1.filas; i++) {
@@ -65,12 +91,9 @@ void Matriz::escalar(const Matriz& M1, int num) {
     }
 }
 
-Matriz::Matriz(int i) {
-
-}
 
 // Trasposición de matriz
-void Matriz::transposicion(const Matriz & M1) {
+void PROYECTO_1::Matriz::transposicion(const Matriz & M1) {
 
     Matriz temporal(M1);
     for (int i = 0; i < M1.filas; i++) {
@@ -81,7 +104,7 @@ void Matriz::transposicion(const Matriz & M1) {
 }
 
 // Sobrecarga de operador +
-Matriz Matriz::operator+(const Matriz& M1){
+PROYECTO_1::Matriz PROYECTO_1::Matriz::operator+(const Matriz& M1){
 
     Matriz temporal(M1);
       for(int i = 0; i < M1.filas; i++){
@@ -94,7 +117,7 @@ Matriz Matriz::operator+(const Matriz& M1){
 }
 
 // Sobrecarga operador *
-Matriz Matriz::operator*(const Matriz& M1){
+PROYECTO_1::Matriz PROYECTO_1::Matriz::operator*(const Matriz& M1){
 
     Matriz temporal(M1);
     for(int i = 0; i < M1.filas; i++){
@@ -108,7 +131,7 @@ Matriz Matriz::operator*(const Matriz& M1){
     return temporal;
 }
 
-Matriz& Matriz::operator=(const Matriz & M1) {
+PROYECTO_1::Matriz& PROYECTO_1::Matriz::operator=(const Matriz & M1) {
 
     if(this->filas !=0 && this->columnas!=0){
         delete [] this->matriz;
