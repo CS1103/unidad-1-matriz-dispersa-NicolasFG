@@ -5,12 +5,12 @@
 using namespace std;
 
 // Todos los valores a 0.
-Matriz::Matriz(): matriz{nullptr}, filas {0}, columnas{0} {
+PROYECTO_1::Matriz::Matriz(): matriz{nullptr}, filas {0}, columnas{0} {
 
 }
 
 // Crear matriz
-Matriz::Matriz(int f, int c): filas {f}, columnas{c} {
+PROYECTO_1::Matriz::Matriz(int f, int c): filas {f}, columnas{c} {
     try{
         if(filas != columnas)
         {
@@ -32,7 +32,7 @@ Matriz::Matriz(int f, int c): filas {f}, columnas{c} {
 // Destructor por defecto
 
 // Llenar matriz
-void Matriz::llenar() {
+void PROYECTO_1::Matriz::llenar() {
 
     try {
         if (filas != columnas) {
@@ -54,7 +54,7 @@ void Matriz::llenar() {
 
 
 // Imprimir matriz
-void Matriz::imprimir(){
+void PROYECTO_1::Matriz::imprimir(){
     try{
         if(filas != columnas)
         {
@@ -75,7 +75,7 @@ void Matriz::imprimir(){
 
 
 // Producto Punto
-void Matriz::escalar(const Matriz& M1, int num) {
+void PROYECTO_1::Matriz::escalar(const Matriz& M1, int num) {
 
     Matriz temporal(M1);
     for (int i = 0; i < M1.filas; i++) {
@@ -87,7 +87,7 @@ void Matriz::escalar(const Matriz& M1, int num) {
 
 
 // Trasposición de matriz
-void Matriz::transposicion(const Matriz& M1) {
+void PROYECTO_1::Matriz::transposicion(const Matriz& M1) {
 
     Matriz temporal(M1);
     for (int i = 0; i < M1.filas; i++) {
@@ -97,8 +97,9 @@ void Matriz::transposicion(const Matriz& M1) {
     }
 }
 
+
 // Sobrecarga de operador + (suma)
-Matriz Matriz::operator+(const Matriz& M1){
+PROYECTO_1::Matriz PROYECTO_1::Matriz::operator+(const Matriz& M1){
 
     Matriz temporal(M1);
     for(int i = 0; i < M1.filas; i++){
@@ -110,7 +111,7 @@ Matriz Matriz::operator+(const Matriz& M1){
 }
 
 // Sobrecarga operador * (multiplicacion)
-Matriz Matriz::operator*(const Matriz &M2){
+PROYECTO_1::Matriz PROYECTO_1::Matriz::operator*(const Matriz &M2){
     auto temp=new Matriz(filas,columnas);
     for(int i=0; i<filas; ++i)
         for(int j=0; j<columnas; ++j)
@@ -120,7 +121,7 @@ Matriz Matriz::operator*(const Matriz &M2){
 }
 
 // Sobrecarga operador =
-Matriz Matriz::operator=(const Matriz & M1) {
+PROYECTO_1::Matriz PROYECTO_1::Matriz::operator=(const Matriz & M1) {
 
     if(this->filas !=0 && this->columnas!=0){
         delete [] this->matriz;

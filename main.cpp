@@ -7,6 +7,7 @@ using namespace std;
 
 int main() {
     srand(time(nullptr));
+
     cout<< "OPERACIONES CON MATRICES CUADRADAS"<<endl;
     int filas, columnas;
     cout<<"Ingresa las filas: ";
@@ -15,13 +16,12 @@ int main() {
     cin >> columnas;
 
 
-    if (filas == columnas) {
 
-        auto M1=new Matriz(filas,columnas);
-        auto M2=new Matriz(filas,columnas);
-        auto MS=new Matriz(filas,columnas);
-        auto MT=new Matriz(filas,columnas);
-        auto ME = new Matriz(filas,columnas);
+        auto M1=new PROYECTO_1::Matriz(filas,columnas);
+        auto M2=new PROYECTO_1::Matriz(filas,columnas);
+        auto M3=new PROYECTO_1::Matriz(filas,columnas);
+        auto M4=new PROYECTO_1::Matriz(filas,columnas);
+        auto M5 = new PROYECTO_1::Matriz(filas,columnas);
 
         M1->llenar();
         cout << "Matriz 1: " << '\n';
@@ -34,64 +34,64 @@ int main() {
         M2->imprimir();
         cout << endl;
 
-        *MS = *M1 + *M2;//Sobrecarga operador +
+        *M3 = *M1 + *M2;
 
         cout << "La suma de M1 y M2 es: " << '\n';
-        MS->imprimir();
+        M3->imprimir();
         cout << endl;
 
 
-        ME->escalar(*M1, 5);
+        M4->escalar(*M1, 5);
 
         cout << "La mult escalar M1 es: " << '\n';
-        ME->imprimir();
+        M4->imprimir();
 
 
-        MT->transposicion(*M1);
+        M5->transposicion(*M1);
 
         cout << "La transpuesta de M1 es: " << '\n';
-        MT->imprimir();
+        M5->imprimir();
         cout << endl;
 
 
-        auto Mx = new Matriz(filas, columnas);
-        auto My = new Matriz(filas, columnas);
+        auto M6 = new PROYECTO_1::Matriz(filas, columnas);
+        auto M7 = new PROYECTO_1::Matriz(filas, columnas);
 
 
-        Mx->llenar();
+        M6->llenar();
 
         cout << "Matriz x: " << '\n';
-        Mx->imprimir();
+        M6->imprimir();
         cout << endl;
 
-        My->llenar();
+        M7->llenar();
         cout << "Matriz y:" << '\n';
-        My->imprimir();
+        M7->imprimir();
 
         cout << endl;
 
 
-        auto M_multiplicacion = new Matriz(filas, columnas);
+        auto M8 = new PROYECTO_1::Matriz(filas, columnas);
 
-        *M_multiplicacion = *Mx * *My; //Sobrecarga operador *
+        *M8 = *M6 * *M7; //Sobrecarga operador *
 
         cout << "La multiplicacion de Mx y My es: " << '\n';
-        M_multiplicacion->imprimir();
+        M8->imprimir();
         cout << endl;
-
 
         delete M1;
         delete M2;
-        delete MS;
-        delete MT;
-        delete ME;
-        delete Mx;
-        delete My;
-    }
+        delete M3;
+        delete M4;
+        delete M5;
+        delete M6;
+        delete M7;
+        delete M8;
 
-    else {
+
+
         cout << "ERROR: No es una matriz cuadrada";
-    }
+
     return 0;
 
 }
